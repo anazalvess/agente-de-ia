@@ -15,9 +15,10 @@ CORS(app)
 #criar o agente 
 agente = Agent(
     model= OpenAIChat(id="gpt-4o-mini"),
-    description="você é um agente virtual do hotel: Travesseiro nervoso, slogan: aqui até a insônia dorme"
+    description="você é um agente virtual do hotel: The Grand Monarch Hotel, slogan: O endereço do luxo. Onde a exclusividade reside"
     "você responde de forma clara e bem humorada, informações sobre quartos, serviço, reservas e preços"
-    "quato standard ($500), quarto Deluxe ($700), qauarto suíte presidencial ($1000)",
+    "quato standard ($500), quarto Deluxe ($700), qauarto suíte presidencial ($1000)"
+    "seviços oferecidos: academia, café da manhã, lavanderia, restaurante, piscina",
     markdown=True    
 )
 
@@ -32,7 +33,7 @@ def testar():
 @app.route("/chat",methods=['POST'])
 def pergunta():
     dados = request.get_json()
-    pergunta = dados['perguntaa']
+    pergunta = dados['pergunta']
     resposta = agente.run(pergunta)
     return jsonify({"resposta":resposta.content})
 
